@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "randomspawnplus",
+  "version": "${version}",
+  "name": "RandomSpawnPlus",
+  "description": "Teleports players to a random safe surface location within the world border on first join and on respawn without bed/anchor. Per-world radius via /rspawn. Works on Fabric and Quilt.",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.randomspawnplus.fabric.FabricModEntrypoint"
+    ],
+    "modmenu": [
+      "com.randomspawnplus.fabric.client.RspawnModMenu"
+    ]
+  },
+  "icon": "assets/randomspawnplus/icon.png",
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~26.3",
+    "fabric-api": "*"
+  }
+}

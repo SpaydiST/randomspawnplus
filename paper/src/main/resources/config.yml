@@ -1,0 +1,64 @@
+# Отступ от границы барьера (в блоках) — чтобы не спавнить вплотную к границе.
+border-margin: 50
+
+# Число попыток найти безопасную случайную точку.
+search-attempts: 10
+
+# Радиус спирального поиска безопасного блока вокруг выбранной точки,
+# если сама поверхность в ней опасна.
+safe-search-radius: 20
+
+# На сколько блоков поднимать игрока над верхним твёрдым блоком (обычно 1).
+height-offset: 1
+
+# Совместимый радиус по умолчанию для старых конфигураций без отдельных радиусов режимов.
+# 0 = только ограничение мировой границей.
+default-radius: 5000
+
+# First-time joins and ordinary death respawns have independent spawn rules.
+# When enabled, first-time players are teleported to this exact XYZ location.
+first-join-at-coordinates: ${firstJoinAtCoordinates}
+first-join-x: 35.16
+first-join-y: 128.00
+first-join-z: -103.34
+first-join-enabled: true
+first-join-min-radius: 500
+first-join-max-radius: 3000
+respawn-enabled: true
+respawn-min-radius: 0
+respawn-max-radius: 1000
+
+# Search work is split across server ticks. solo/small/large set per-tick budgets.
+performance-profile: small
+reserve-points: 4
+player-spacing: 128
+lava-safety-radius: 1
+avoid-trees: true
+avoid-narrow-ledges: false
+excluded-biomes: []
+
+# Подробный лог поиска точки (полезно для отладки).
+verbose: false
+
+# Блоки, которые считаются опасными для спавна (id без namespace).
+# Игрок не заспавнится на них и внутри/выше них на 2 блока.
+hazards:
+  - water
+  - lava
+  - cactus
+  - magma_block
+  - fire
+  - sweet_berry_bush
+  - powder_snow
+  - cobweb
+
+# Миры, где работает случайный спавн (пустой список = все миры).
+worlds: []
+
+# Радиус задаётся per-world:
+#   /rspawn radius set <радиус> [мир]
+#   /rspawn radius get [мир]
+#   /rspawn radius reset [мир]
+# или через /gamerule respawn_radius <радиус> (совместимость со старой версией).
+# Радиус > 0 ограничивает зону кругом вокруг мирового спавна (пересекается с барьером).
+# Значение хранится в spawnzones.yml и переживает рестарт.

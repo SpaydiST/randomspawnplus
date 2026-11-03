@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+side="BOTH"
+
+[[mods]]
+modId="randomspawnplus"
+version="${version}"
+displayName="RandomSpawnPlus"
+description='''Teleports players to a random safe surface location within the world border on first join and on respawn without bed/anchor. Per-world radius via /rspawn.'''
+authors="RandomSpawnPlus"
+logoFile="assets/randomspawnplus/icon.png"
+logoBlur=false
+
+[[dependencies.randomspawnplus]]
+modId="neoforge"
+type="required"
+versionRange="[21.11,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.randomspawnplus]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.11,)"
+ordering="NONE"
+side="BOTH"

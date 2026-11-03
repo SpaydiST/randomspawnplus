@@ -1,44 +1,37 @@
 plugins {
-    id("java-library")
-    id("xyz.jpenilla.run-paper") version "3.1.0"
+    base
 }
 
-repositories {
-    mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+allprojects {
+    group = property("group") as String
+    version = property("version") as String
 }
 
-dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
+/** Builds each supported Fabric, NeoForge, and Paper artifact from the repository root. */
+tasks.named("assemble") {
+    dependsOn(
+        ":fabric-1.21.11:assemble",
+        ":fabric-26.3:assemble",
+        ":neoforge-1.21.11:assemble",
+        ":neoforge-26.3:assemble",
+        ":paper-1.21.11:assemble",
+        ":paper:assemble"
+    )
 }
 
-java {
-    toolchain.languageVersion = JavaLanguageVersion.of(25)
-    withSourcesJar()
+/** Uploads one correctly-labelled file per supported game version and loader. */
+tasks.register("publishModrinth") {
+    group = "publishing"
+    description = "Publishes Fabric/Quilt, NeoForge and Paper/Folia builds to Modrinth."
+    dependsOn(
+        ":fabric-1.21.11:modrinth",
+        ":fabric-26.3:modrinth",
+        ":neoforge-1.21.11:modrinth",
+        ":neoforge-26.3:modrinth",
+        ":paper-1.21.11:modrinth",
+        ":paper:modrinth"
+    )
 }
 
-base {
-    archivesName.set("RandomSpawnPlus")
-}
-
-tasks {
-    compileJava {
-        options.compilerArgs.addAll(listOf("--release", "8"))
-    }
-
-    runServer {
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.16.5")
-        jvmArgs("-Xms2G", "-Xmx2G")
-    }
-
-    processResources {
-        val props = mapOf("version" to version)
-        filesMatching("plugin.yml") {
-            expand(props)
-        }
-    }
-}
+// Общий репозиторий для подпроектов задаётся в settings.gradle.kts
+// (dependencyResolutionManagement), поэтому здесь ничего добавлять не нужно.

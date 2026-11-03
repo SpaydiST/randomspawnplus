@@ -1,0 +1,14 @@
+name: RandomSpawnPlus
+version: '${version}'
+description: Teleports players to a random safe surface location within the world border on first join and on respawn without bed/anchor. Optional per-world radius via /rspawn or /gamerule respawn_radius.
+main: com.randomspawnplus.paper.RandomSpawnPlusPlugin
+api-version: '26.3'
+load: POSTWORLD
+commands:
+  rspawn:
+    description: RandomSpawnPlus admin commands
+    usage: /rspawn reload | /rspawn radius get|set|reset
+permissions:
+  randomspawnplus.admin:
+    description: Allows reloading config and editing spawn radius
+    default: op

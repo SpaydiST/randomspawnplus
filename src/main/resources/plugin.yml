@@ -1,7 +1,0 @@
-name: RandomSpawnPlus
-version: '${version}'
-description: Teleports players to a random safe location on the surface within the world border, on first join and on respawn without a bed. Optional radius limit via /gamerule respawn_radius.
-
-main: org.example1.randomspawn.Randomspawn
-api-version: '1.16'
-load: POSTWORLD
